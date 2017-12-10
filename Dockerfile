@@ -75,3 +75,12 @@ RUN cd /opencv-3.1.0/cmake_binary \
 	&& rm -r /opencv_contrib-3.1.0 \
         && rm -r /leptonica-1.73.tar.gz
 
+WORKDIR /
+RUN git clone https://github.com/weiliu89/caffe.git \
+cd caffe \
+git checkout ssd\
+cp Makefile.config.example Makefile.config\
+make -j8\
+make py\
+make test -j8\
+make runtest -j8\
